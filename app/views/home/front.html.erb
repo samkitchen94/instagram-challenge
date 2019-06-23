@@ -20,8 +20,10 @@
           <%= form_for Post.new do |f| %>
             <div class="form-group">
               Add a description to the cuddly cat you're sharing:
+              <br>
               <%= f.text_field :content %>
             </div>
+            <br>
             <br>
             Upload a cat image (if it's not a cat our moderators will permanently ban you):
             <div class="form-group">
@@ -49,8 +51,9 @@
               </div>
             </div>
             <image src="<%=(url_for(post.attachment))%>">
-            <div class="description">
+            <div class="content">
             <%= post.content %>
+            <br>
             </div>
             </section>
             </section>

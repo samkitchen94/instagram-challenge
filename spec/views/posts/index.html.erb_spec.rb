@@ -6,12 +6,12 @@ RSpec.describe "posts/index", type: :view do
       Post.create!(
         :attachment => "Attachment",
         :content => "MyText",
-        :user => nil
+        :user => User
       ),
       Post.create!(
         :attachment => "Attachment",
         :content => "MyText",
-        :user => nil
+        :user => User
       )
     ])
   end

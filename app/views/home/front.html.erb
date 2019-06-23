@@ -15,6 +15,49 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></li>
+          <br>
+          <h2> Share a cat post: </h2>
+          <%= form_for Post.new do |f| %>
+            <div class="form-group">
+              Add a description to the cuddly cat you're sharing:
+              <%= f.text_field :content %>
+            </div>
+            <br>
+            Upload a cat image (if it's not a cat our moderators will permanently ban you):
+            <div class="form-group">
+              <%= f.file_field :attachment %>
+            </div>
+            <br>
+            <div class="form-group">
+              <% f.text_field :user_id, value: current_user.id, class:'d-none'%>
+            </div>
+            <br>
+            <div class="text-center">
+              <%= f.submit 'Create Post', class: 'btn btn-primary' %>
+            </div>
+            <br>
+            <br>
+            <h2>Cat posts by yourself and others across the world:</h2>
+            <div class="posts">
+              <br>
+             <% @posts.each do |post| %>
+              <section class="post">
+              <!-- post view -->
+              <br>
+              <div class="name">
+                <%= post.user.name %>
+              </div>
+            </div>
+            <image src="<%=(url_for(post.attachment))%>">
+            <div class="description">
+            <%= post.content %>
+            </div>
+            </section>
+            </section>
+             <% end %>
+           </div>
+        <% end %>
+
         <% else %>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Sign in', user_session_path %></li>
